@@ -19,12 +19,13 @@ Users can make real-time predictions via a public API and interactive mobile int
 
 [https://github.com/NFORMII/machine-learning-prediction-model.git](https://github.com/NFORMII/machine-learning-prediction-model.git)
 
- **Public Swagger UI (Use this to test the API):**
+**to test my api**
 
-👉 **[https://businesssuccesspredictor.onrender.com/docs](https://businesssuccesspredictor.onrender.com/docs)** *(Example — replace with your actual deployed FastAPI URL)*
-❗ **Do NOT use localhost — instructors must access it publicly.**
-
+ https://machine-learning-prediction-model-3.onrender.com/docs
 ---
+
+**to see if my api is up and running**
+https://machine-learning-prediction-model-3.onrender.com
 
  **Dataset**
 
@@ -75,12 +76,14 @@ print(prediction)
 
 ### **Base URL (Public)**
 
-👉 *Replace with your actual deployed URL:*
-**[https://businesssuccesspredictor.onrender.com](https://businesssuccesspredictor.onrender.com)**
+deplyed link
+
+**https://machine-learning-prediction-model-2.onrender.com/**
 
 ### **Swagger UI**
 
-👉 **[https://businesssuccesspredictor.onrender.com/docs](https://businesssuccesspredictor.onrender.com/docs)**
+
+**https://machine-learning-prediction-model-3.onrender.com/docs**
 
 ### **Endpoints**
 
@@ -137,7 +140,7 @@ It contains:
 2. Navigate to the app folder:
 
    ```bash
-   cd style_her_app/frontend
+   cd summative/mlprediction_app
    ```
 3. Get dependencies:
 
@@ -160,7 +163,7 @@ uvicorn predict:app --reload
 ```
 
 Then open:
-[http://localhost:8000/docs](http://localhost:8000/docs)
+[https://machine-learning-prediction-model-3.onrender.com/docs](http://localhost:8000/docs)
 
 ---
 
