@@ -158,8 +158,10 @@ It contains:
 ## **How to Run the API Locally (Optional)**
 
 ```bash
+cd summative/api
+
 pip install -r requirements.txt
-uvicorn predict:app --reload
+run python predict.py
 ```
 
 Then open:
