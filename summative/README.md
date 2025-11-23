@@ -1,144 +1,170 @@
 
-# Business Success Predictor
-demo video: https://drive.google.com/file/d/1w15vNqPevLkuedSJdRWYKVa7OjNevh2w/view?usp=sharing 
-git hub: https://github.com/NFORMII/machine-learning-prediction-model.git
 
-## Project Overview
+# **Business Success Predictor**
 
-The **Business Success Predictor** is an API and mobile-ready solution to predict whether a business will succeed based on team size, funding rounds, and total funding. It leverages machine learning models including **Decision Trees**, **Random Forest**, and **Linear Regression** to make predictions.
+ **Mission**
+
+This project predicts the likelihood of a business succeeding based on team size, funding rounds, and total funding.
+The goal is to help entrepreneurs and analysts estimate business potential using machine learning.
+The solution includes a trained model, a FastAPI backend, and a Flutter mobile app.
+Users can make real-time predictions via a public API and interactive mobile interface.
+
+---
+
+ **Demo Video:**
+
+[https://youtu.be/3QhLr2lZNx8](https://youtu.be/3QhLr2lZNx8)
+
+**GitHub Repository:**
+
+[https://github.com/NFORMII/machine-learning-prediction-model.git](https://github.com/NFORMII/machine-learning-prediction-model.git)
+
+ **Public Swagger UI (Use this to test the API):**
+
+👉 **[https://businesssuccesspredictor.onrender.com/docs](https://businesssuccesspredictor.onrender.com/docs)** *(Example — replace with your actual deployed FastAPI URL)*
+❗ **Do NOT use localhost — instructors must access it publicly.**
+
+---
+
+ **Dataset**
+
+* **Source:** Crunchbase Startup Dataset (via Kaggle)
+* **Description:** Contains business information such as funding rounds, total funding, and number of team relationships.
+* **Rich Variety:** Includes Series A–D funding indicators, numerical team size, and multiple funding metrics.
+
+### **Key Variables**
+
+* `relationships` – Number of business team members
+* `has_roundA`, `has_roundB`, `has_roundC`, `has_roundD` – Whether the business received Series A–D funding
+* `funding_rounds` – Total number of funding rounds
+* `funding_total_usd` – Total funding raised
+
+### **Included Visualizations**
+
+* Correlation heatmap
+* Histograms and scatter plots for important variables
+
+---
+
+## **Model Training**
+
+Three models were trained:
+
+1. **Linear Regression**
+2. **Decision Tree Regressor**
+3. **Random Forest Regressor**
+
+The model with the **lowest loss (Decision Tree)** was saved as:
 
 
-
-## Dataset
-
-* **Source:** [Insert dataset source here, e.g., Kaggle, Crunchbase]
-* **Description:** The dataset contains business information including funding rounds, total funding, and team relationships.
-* **Volume & Variety:** The dataset is rich, covering multiple funding stages (Series A-D), number of relationships, and total funding amounts.
-* **Key Variables:**
-
-  * `relationships`: Number of business team members (1-100)
-  * `has_roundA`: Indicates if business has Series A funding (0 or 1)
-  * `has_roundB`: Indicates if business has Series B funding (0 or 1)
-  * `has_roundC`: Indicates if business has Series C funding (0 or 1)
-  * `has_roundD`: Indicates if business has Series D funding (0 or 1)
-  * `funding_rounds`: Total number of funding rounds (0-50)
-  * `funding_total_usd`: Total funding in USD (>=0)
-
-### Visualizations
-
-* **Correlation Heatmap:** Shows relationships between funding rounds, team size, and funding total.
-* **Variable Distributions:** Histograms and scatter plots for key variables affecting model outcomes.
+decision_tree_pipeline.pkl
 
 
+Example prediction test in Jupyter:
 
-## Models
-
-The project includes the following models:
-
-1. **Decision Tree Regressor**
-2. **Random Forest Regressor**
-3. **Linear Regression**
-
-* The model with the **lowest loss** is saved (`decision_tree_pipeline.pkl`) and used for predictions.
-* Example of predicting a single business:
-
-```python
+python
 from predict import pipeline
 import numpy as np
 
 data = np.array([[10, 1, 3, 0, 1, 0, 500000]])
 prediction = pipeline.predict(data)[0]
 print(prediction)
+
+
+## **API Documentation**
+
+### **Base URL (Public)**
+
+👉 *Replace with your actual deployed URL:*
+**[https://businesssuccesspredictor.onrender.com](https://businesssuccesspredictor.onrender.com)**
+
+### **Swagger UI**
+
+👉 **[https://businesssuccesspredictor.onrender.com/docs](https://businesssuccesspredictor.onrender.com/docs)**
+
+### **Endpoints**
+
+#### **GET /**
+
+Returns API status.
+
+```json
+{"message": "Business Success Predictor API is running!"}
 ```
 
+#### **POST /predict**
 
+Predicts whether a business will succeed.
 
-## API
+Request example:
 
-### FastAPI Endpoints
-
-* **Base URL:** `http://localhost:8000`
-* **Swagger UI:** `http://localhost:8000/docs`
-
-### Endpoints
-
-1. **GET /**
-
-   * Description: Returns a simple message confirming the API is running.
-   * Response:
-
-   ```json
-   {"message": "Business Success Predictor API is running!"}
-   ```
-
-2. **POST /predict**
-
-   * Description: Predicts whether a business will succeed.
-   * Request Body:
-
-   ```json
-   {
-       "relationships": 10,
-       "has_roundB": 1,
-       "funding_rounds": 3,
-       "has_roundA": 0,
-       "has_roundC": 1,
-       "has_roundD": 0,
-       "funding_total_usd": 500000
-   }
-   ```
-
-   * Response:
-
-   ```json
-   {
-       "predicted_status": 1,
-       "raw_score": 0.752
-   }
-   ```
-
-
-
-## Mobile App Integration
-
-* The API is designed for mobile apps to send feature inputs and receive predictions.
-* Mobile app interface includes:
-
-  * Text inputs for each feature
-  * Submit button
-  * Output display for predicted status
-
-
-
-## Installation
-
-1. Clone the repo:
-
-```bash
-git clone <your-repo-url>
-cd business-success-predictor
+```json
+{
+  "relationships": 10,
+  "has_roundB": 1,
+  "funding_rounds": 3,
+  "has_roundA": 0,
+  "has_roundC": 1,
+  "has_roundD": 0,
+  "funding_total_usd": 500000
+}
 ```
 
-2. Install dependencies:
+Response example:
+
+```json
+{
+  "predicted_status": 1,
+  "raw_score": 0.752
+}
+```
+
+---
+
+## **Mobile App (Flutter)**
+
+The mobile app is connected directly to the FastAPI backend.
+It contains:
+
+* A prediction page
+* Text fields for all input variables
+* A “Predict” button
+* Output display area
+
+### **How to Run the Mobile App**
+
+1. Install Flutter SDK
+2. Navigate to the app folder:
+
+   ```bash
+   cd style_her_app/frontend
+   ```
+3. Get dependencies:
+
+   ```bash
+   flutter pub get
+   ```
+4. Run on device/emulator:
+
+   ```bash
+   flutter run
+   ```
+
+---
+
+## **How to Run the API Locally (Optional)**
 
 ```bash
 pip install -r requirements.txt
-```
-
-3. Run the API:
-
-```bash
 uvicorn predict:app --reload
 ```
 
-4. Open Swagger UI at `http://localhost:8000/docs` to test predictions.
+Then open:
+[http://localhost:8000/docs](http://localhost:8000/docs)
 
--
+---
 
-Author
+## **Author**
 
 Nformi Modestine Girbong
-demo video:  https://drive.google.com/file/d/1w15vNqPevLkuedSJdRWYKVa7OjNevh2w/view?usp=sharing 
-
-
 
