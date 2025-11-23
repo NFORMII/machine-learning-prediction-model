@@ -11,9 +11,9 @@ class EntrepreneurialSuccessGaugeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // deep, luxurious purple palette for the app
-    const Color deepPurple = Color(0xFF1B0033);   // very dark purple, almost black
-    const Color midPurple = Color(0xFF4B0073);    // accent purple for interactive elements
+    // deep, bright purple palette for the app background and accents
+    const Color deepPurple = Color(0xFF6A0DAD);   // deep bright purple (vibrant)
+    const Color midPurple = Color(0xFF9F7AEA);    // lighter accent purple
 
     final baseTextStyle = const TextStyle(color: Colors.white);
 
@@ -28,12 +28,12 @@ class EntrepreneurialSuccessGaugeApp extends StatelessWidget {
           onSecondary: Colors.white,
           error: Colors.red,
           onError: Colors.white,
-          background: deepPurple,
+          background: deepPurple,     // ensure background uses deep bright purple
           onBackground: Colors.white,
-          surface: deepPurple,
+          surface: deepPurple,        // keep surfaces deep purple as requested
           onSurface: Colors.white,
         ),
-        scaffoldBackgroundColor: deepPurple, // main background for the app
+        scaffoldBackgroundColor: deepPurple, // main background = deep bright purple
         appBarTheme: const AppBarTheme(
           backgroundColor: deepPurple,
           foregroundColor: Colors.white,
@@ -59,7 +59,7 @@ class EntrepreneurialSuccessGaugeApp extends StatelessWidget {
         ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          fillColor: midPurple, // slightly brighter purple for input fields
+          fillColor: midPurple, // slightly lighter purple for input fields
           labelStyle: const TextStyle(color: Colors.white70),
           hintStyle: const TextStyle(color: Colors.white54),
           prefixIconColor: Colors.white,
