@@ -18,7 +18,7 @@ class EntrepreneurialSuccessGaugeApp extends StatelessWidget {
     final baseTextStyle = const TextStyle(color: Colors.white);
 
     return MaterialApp(
-      title: 'Entrepreneurial Success Gauge',
+      title: 'Business Preddiction',
       theme: ThemeData(
         colorScheme: const ColorScheme(
           brightness: Brightness.dark,
