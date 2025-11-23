@@ -1,3 +1,4 @@
+// ...existing code...
 import 'package:flutter/material.dart';
 import '../models/startup_data.dart';
 import '../services/prediction_service.dart';
@@ -52,6 +53,8 @@ class _InputScreenState extends State<InputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // overall background using the primary theme color
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -60,10 +63,10 @@ class _InputScreenState extends State<InputScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Header
+                // App header
                 const Center(
                   child: Text(
-                    'Startup Predictor',
+                    'Entrepreneurial Success Gauge',
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
@@ -71,8 +74,8 @@ class _InputScreenState extends State<InputScreen> {
                 const SizedBox(height: 8),
                 const Center(
                   child: Text(
-                    'Enter startup details to forecast its success.',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    'Fill in your venture details to evaluate its potential.',
+                    style: TextStyle(fontSize: 16, color: Colors.white70),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -80,7 +83,7 @@ class _InputScreenState extends State<InputScreen> {
 
                 // Form Fields
                 _buildTextFormField(
-                  label: 'Number of Team Members',
+                  label: 'Team Size',
                   icon: Icons.people_outline,
                   onSaved: (value) => _formData.relationships = int.tryParse(value!) ?? 0,
                 ),
@@ -98,28 +101,28 @@ class _InputScreenState extends State<InputScreen> {
                 ),
                 const SizedBox(height: 24),
                 _buildFundingRoundSwitch(
-                  label: 'Has Series A Funding?',
+                  label: 'Has Series A Investment?',
                   value: _formData.has_roundA == 1,
                   onChanged: (newValue) {
                     setState(() => _formData.has_roundA = newValue ? 1 : 0);
                   },
                 ),
                 _buildFundingRoundSwitch(
-                  label: 'Has Series B Funding?',
+                  label: 'Has Series B Investment?',
                   value: _formData.has_roundB == 1,
                   onChanged: (newValue) {
                     setState(() => _formData.has_roundB = newValue ? 1 : 0);
                   },
                 ),
                 _buildFundingRoundSwitch(
-                  label: 'Has Series C Funding?',
+                  label: 'Has Series C Investment?',
                   value: _formData.has_roundC == 1,
                   onChanged: (newValue) {
                     setState(() => _formData.has_roundC = newValue ? 1 : 0);
                   },
                 ),
                 _buildFundingRoundSwitch(
-                  label: 'Has Series D Funding?',
+                  label: 'Has Series D Investment?',
                   value: _formData.has_roundD == 1,
                   onChanged: (newValue) {
                     setState(() => _formData.has_roundD = newValue ? 1 : 0);
@@ -132,8 +135,8 @@ class _InputScreenState extends State<InputScreen> {
                   const Center(child: CircularProgressIndicator())
                 else
                   ElevatedButton.icon(
-                    icon: const Icon(Icons.online_prediction),
-                    label: const Text('Predict!'),
+                    icon: const Icon(Icons.insights),
+                    label: const Text('Evaluate Venture'),
                     onPressed: _handlePredict,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).colorScheme.primary,
@@ -187,7 +190,7 @@ class _InputScreenState extends State<InputScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: const TextStyle(fontSize: 16)),
+          Text(label, style: const TextStyle(fontSize: 16, color: Colors.white)),
           Switch(
             value: value,
             onChanged: onChanged,
@@ -198,3 +201,4 @@ class _InputScreenState extends State<InputScreen> {
     );
   }
 }
+// ...existing code...

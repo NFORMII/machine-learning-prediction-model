@@ -13,14 +13,14 @@ class ResultScreen extends StatelessWidget {
     final double rawScore = predictionResult['raw_score'];
     
     final bool isSuccess = predictedStatus == 1;
-    final String predictionText = isSuccess ? 'Success' : 'Failure';
+    final String predictionText = isSuccess ? 'High Potential for Success' : 'At Risk of Failure';
     final Color resultColor = isSuccess ? Colors.green.shade400 : Colors.red.shade400;
     final IconData resultIcon = isSuccess ? Icons.check_circle_outline : Icons.highlight_off;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Prediction Result'),
-        backgroundColor: Colors.transparent,
+        title: const Text('Entrepreneurial Success Gauge'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0,
       ),
       body: Padding(
@@ -38,9 +38,9 @@ class ResultScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Raw Prediction Score: ${rawScore.toStringAsFixed(3)}',
+              'Prediction Confidence Score: ${rawScore.toStringAsFixed(3)}',
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
+              style: const TextStyle(fontSize: 16, color: Colors.white70),
             ),
             const SizedBox(height: 48),
       
@@ -49,10 +49,10 @@ class ResultScreen extends StatelessWidget {
 
             ElevatedButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Predict Again'),
+              child: const Text('Evaluate Another Venture'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey.shade800,
-                foregroundColor: Colors.white,
+                backgroundColor: Colors.white,
+                foregroundColor: Theme.of(context).colorScheme.primary,
                 minimumSize: const Size(double.infinity, 56),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
@@ -66,7 +66,6 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-
   Widget _buildSummaryCard(BuildContext context) {
     return Card(
       color: Theme.of(context).colorScheme.surface,
@@ -76,21 +75,20 @@ class ResultScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Summary of Inputs', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            const Divider(height: 24),
-            _buildSummaryRow('Team Members:', formData.relationships.toString()),
+            const Text('Venture Summary', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const Divider(height: 24, color: Colors.white24),
+            _buildSummaryRow('Team Size:', formData.relationships.toString()),
             _buildSummaryRow('Total Funding:', '\$${formData.funding_total_usd}'),
             _buildSummaryRow('Funding Rounds:', formData.funding_rounds.toString()),
-            _buildSummaryRow('Has Series A:', formData.has_roundA == 1 ? 'Yes' : 'No'),
-            _buildSummaryRow('Has Series B:', formData.has_roundB == 1 ? 'Yes' : 'No'),
-            _buildSummaryRow('Has Series C:', formData.has_roundC == 1 ? 'Yes' : 'No'),
-            _buildSummaryRow('Has Series D:', formData.has_roundD == 1 ? 'Yes' : 'No'),
+            _buildSummaryRow('Series A Investment:', formData.has_roundA == 1 ? 'Yes' : 'No'),
+            _buildSummaryRow('Series B Investment:', formData.has_roundB == 1 ? 'Yes' : 'No'),
+            _buildSummaryRow('Series C Investment:', formData.has_roundC == 1 ? 'Yes' : 'No'),
+            _buildSummaryRow('Series D Investment:', formData.has_roundD == 1 ? 'Yes' : 'No'),
           ],
         ),
       ),
     );
   }
-
 
   Widget _buildSummaryRow(String label, String value) {
     return Padding(
@@ -98,8 +96,8 @@ class ResultScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: const TextStyle(color: Colors.grey)),
-          Text(value, style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text(label, style: const TextStyle(color: Colors.white70)),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
         ],
       ),
     );

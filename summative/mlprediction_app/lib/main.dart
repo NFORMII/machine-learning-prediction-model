@@ -1,30 +1,90 @@
+// ...existing code...
 import 'package:flutter/material.dart';
-import 'screens/input_screen.dart'; 
+import 'screens/input_screen.dart';
 
 void main() {
-  runApp(const StartupPredictorApp());
+  runApp(const EntrepreneurialSuccessGaugeApp());
 }
 
-class StartupPredictorApp extends StatelessWidget {
-  const StartupPredictorApp({super.key});
+class EntrepreneurialSuccessGaugeApp extends StatelessWidget {
+  const EntrepreneurialSuccessGaugeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // deep, luxurious purple palette for the app
+    const Color deepPurple = Color(0xFF1B0033);   // very dark purple, almost black
+    const Color midPurple = Color(0xFF4B0073);    // accent purple for interactive elements
+
+    final baseTextStyle = const TextStyle(color: Colors.white);
+
     return MaterialApp(
-      title: 'Startup Predictor',
-      theme: ThemeData.dark().copyWith(
-        primaryColor: const Color(0xFF4F46E5),
-        scaffoldBackgroundColor: const Color(0xFF111827),
-        colorScheme: const ColorScheme.dark(
-          primary: Color(0xFF4F46E5),
-          secondary: Color(0xFF6366F1),
-          surface: Color(0xFF1F2937),
+      title: 'Entrepreneurial Success Gauge',
+      theme: ThemeData(
+        colorScheme: const ColorScheme(
+          brightness: Brightness.dark,
+          primary: deepPurple,
           onPrimary: Colors.white,
+          secondary: midPurple,
           onSecondary: Colors.white,
+          error: Colors.red,
+          onError: Colors.white,
+          background: deepPurple,
+          onBackground: Colors.white,
+          surface: deepPurple,
           onSurface: Colors.white,
         ),
+        scaffoldBackgroundColor: deepPurple, // main background for the app
+        appBarTheme: const AppBarTheme(
+          backgroundColor: deepPurple,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          titleTextStyle: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
+        ),
+        textTheme: TextTheme(
+          displayLarge: baseTextStyle,
+          displayMedium: baseTextStyle,
+          displaySmall: baseTextStyle,
+          headlineLarge: baseTextStyle,
+          headlineMedium: baseTextStyle,
+          headlineSmall: baseTextStyle,
+          titleLarge: baseTextStyle,
+          titleMedium: baseTextStyle,
+          titleSmall: baseTextStyle,
+          bodyLarge: baseTextStyle,
+          bodyMedium: baseTextStyle,
+          bodySmall: baseTextStyle,
+          labelLarge: baseTextStyle,
+          labelMedium: baseTextStyle,
+          labelSmall: baseTextStyle,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: midPurple, // slightly brighter purple for input fields
+          labelStyle: const TextStyle(color: Colors.white70),
+          hintStyle: const TextStyle(color: Colors.white54),
+          prefixIconColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: midPurple,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          ),
+        ),
+        switchTheme: SwitchThemeData(
+          thumbColor: MaterialStateProperty.all(Colors.white),
+          trackColor: MaterialStateProperty.all(midPurple.withOpacity(0.6)),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
+        cardColor: deepPurple,
+        dividerColor: Colors.white24,
       ),
-      home: const InputScreen(),
+      home: const InputScreen(), // starting page for evaluating entrepreneurial potential
     );
   }
 }
+// ...existing code...
