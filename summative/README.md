@@ -1,5 +1,7 @@
 
 # Business Success Predictor
+demo video: https://drive.google.com/file/d/1w15vNqPevLkuedSJdRWYKVa7OjNevh2w/view?usp=sharing 
+git hub: https://github.com/NFORMII/machine-learning-prediction-model.git
 
 ## Project Overview
 
@@ -136,7 +138,7 @@ uvicorn predict:app --reload
 Author
 
 Nformi Modestine Girbong
-
+demo video:  https://drive.google.com/file/d/1w15vNqPevLkuedSJdRWYKVa7OjNevh2w/view?usp=sharing 
 
 
 
